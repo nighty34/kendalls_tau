@@ -7,7 +7,7 @@ def calculate_kendall_tau(x_array, y_array): # xArray is also used to determine 
     x_tie = 0
     y_tie = 0
 
-    pairList = map()
+    pairList = map() # consists of: KEY: {array with x_value and y_value} VALUE: operation of pair ('0' => Match, '+' => add to provision, '-' => add to inversion)
 
     tested = []
 
@@ -27,20 +27,20 @@ def calculate_kendall_tau(x_array, y_array): # xArray is also used to determine 
                     x_tie += 1
                     y_tie += 1
 
-                    pairList[y_array[current_item]] = x_array[index_opposing_item]
+                    pairList[{y_array[current_item], x_array[index_opposing_item]}] = '0'
 
             # if rdmIndex in arrayX >= currentItem then provisionalSum++
             elif index_opposing_item > x_array.index(current_item):
                 # print(f"{index_current_item} {index_opposing_item}")
                 provision += 1
 
-                pairList[y_array[current_item]] = x_array[index_opposing_item]
+                pairList[{y_array[current_item], x_array[index_opposing_item]}] = '+'
 
             # if rdmIndex in arrayY <= currentItem then provisionalSum--
             elif index_opposing_item < x_array.index(current_item):
                 inversion += 1
 
-                pairList[y_array[current_item]] = x_array[index_opposing_item]
+                pairList[{y_array[current_item], x_array[index_opposing_item]}] = '-'
 
         # if xArray doesn't have current Item -> totalTie++
         if current_item not in x_array:
@@ -68,5 +68,10 @@ def calc_big_t(n, x_range):
         sum += x_range*(x_range-1)/2
 
     return sum
+
+def printMap(map):
+    result_str = ""
+    for key, value in map.items():
+        result_str = ""
 
 
