@@ -11,7 +11,6 @@ def calculate_kendall_tau(x_array, y_array): # xArray is also used to determine 
 
     tested = []
 
-
     for current_item in y_array:
         index_current_item = y_array.index(current_item)
         # compare with all entries that have currentIndex<=
