@@ -7,7 +7,7 @@ def calculate_kendall_tau(x_array, y_array): # xArray is also used to determine 
     x_tie = 0
     y_tie = 0
 
-    pairList = ""
+    pairList = map()
 
     tested = []
 
@@ -27,21 +27,20 @@ def calculate_kendall_tau(x_array, y_array): # xArray is also used to determine 
                     x_tie += 1
                     y_tie += 1
 
-                    pairList += addPair(y_array[index_current_item], x_array[index_opposing_item])
+                    pairList[y_array[current_item]] = x_array[index_opposing_item]
 
-
-            # if rdmIndex in arrayX >= currentItem then provisonalSum++
+            # if rdmIndex in arrayX >= currentItem then provisionalSum++
             elif index_opposing_item > x_array.index(current_item):
                 # print(f"{index_current_item} {index_opposing_item}")
                 provision += 1
 
-                pairList += addPair(y_array[index_current_item], x_array[index_opposing_item])
+                pairList[y_array[current_item]] = x_array[index_opposing_item]
 
-            # if rdmIndex in arrayY <= currentItem then provisonalSum--
+            # if rdmIndex in arrayY <= currentItem then provisionalSum--
             elif index_opposing_item < x_array.index(current_item):
                 inversion += 1
 
-                pairList += addPair(y_array[index_current_item], x_array[index_opposing_item])
+                pairList[y_array[current_item]] = x_array[index_opposing_item]
 
         # if xArray doesn't have current Item -> totalTie++
         if current_item not in x_array:
@@ -58,6 +57,7 @@ def calculate_kendall_tau(x_array, y_array): # xArray is also used to determine 
     print(calculate_tau_result(provision, inversion, x_tie, y_tie))
     print(pairList)
 
+
 def calculate_tau_result(provision, inversion, x_tie, y_tie):
     return (provision-inversion)/math.sqrt((provision + inversion + x_tie) * (provision + inversion + y_tie))
 
@@ -68,8 +68,5 @@ def calc_big_t(n, x_range):
         sum += x_range*(x_range-1)/2
 
     return sum
-
-def addPair(x, y):
-    return f"[{x} - {y}] "
 
 
