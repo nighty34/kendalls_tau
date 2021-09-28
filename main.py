@@ -17,7 +17,7 @@ if __name__ == '__main__':
         reader = csv.reader(file)
         qrank = [item for item in reader]
 
-    count = 100
+    count = 200
 
     qrank = qrank[:count]
     nominatim = nominatim[:count]
