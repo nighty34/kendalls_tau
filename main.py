@@ -24,6 +24,7 @@ if __name__ == '__main__':
 
     kendall_tau.calculate_kendall_tau(nominatim, qrank)
 
+    # determine amount of different entries
     x_array = nominatim
     y_array = qrank
 
@@ -36,6 +37,6 @@ if __name__ == '__main__':
     for item in y_array:
         if item not in x_array:
             count_difference += 1
-
+    # print difference
     print(f"difference: {count_difference}")
 
