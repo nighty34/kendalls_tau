@@ -2,3 +2,4 @@
 ./.idea
 ./nominatim_ranked_castles.csv
 ./qrank_ranked_castles.csv
+./__pycache__
