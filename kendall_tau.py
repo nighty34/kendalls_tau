@@ -6,6 +6,7 @@ def calculate_kendall_tau(x_array, y_array): # xArray is also used to determine 
     inversion = 0
     x_tie = 0
     y_tie = 0
+    xy_tie = 0
 
     #pair_map = {} # consists of: KEY: {array with x_value and y_value} VALUE: operation of pair ('0' => Match, '+' => add to provision, '-' => add to inversion)
 
@@ -24,8 +25,7 @@ def calculate_kendall_tau(x_array, y_array): # xArray is also used to determine 
             elif current_item == x_array[index_opposing_item]:
                 # print(f"{index_current_item} - {index_opposing_item}")
                 if index_current_item == index_opposing_item:
-                    x_tie += 1
-                    y_tie += 1
+                    xy_tie += 1
 
                     #pair_map[{y_array[current_item], x_array[index_opposing_item]}] = '0'
 
@@ -53,9 +53,8 @@ def calculate_kendall_tau(x_array, y_array): # xArray is also used to determine 
         if x_item not in y_array:
             x_tie += 1
 
-    print(f"{provision} {inversion} {x_tie} {y_tie}")
+    print(f"{provision} {inversion} {x_tie} {y_tie} {xy_tie}")
     print(calculate_tau_result(provision, inversion, x_tie, y_tie))
-#    print_map(pair_map)
 
 
 def calculate_tau_result(provision, inversion, x_tie, y_tie):
